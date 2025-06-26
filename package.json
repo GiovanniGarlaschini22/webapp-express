@@ -1,9 +1,10 @@
 {
   "name": "webapp-express",
   "version": "1.0.0",
-  "main": "App.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --env-file=.env --watch app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
     "url": "https://github.com/GiovanniGarlaschini22/webapp-express/issues"
   },
   "homepage": "https://github.com/GiovanniGarlaschini22/webapp-express#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
+  }
 }
