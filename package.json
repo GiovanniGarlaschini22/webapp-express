@@ -1,0 +1,19 @@
+{
+  "name": "webapp-express",
+  "version": "1.0.0",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GiovanniGarlaschini22/webapp-express.git"
+  },
+  "author": "Giovanni Garlaschini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GiovanniGarlaschini22/webapp-express/issues"
+  },
+  "homepage": "https://github.com/GiovanniGarlaschini22/webapp-express#readme",
+  "description": ""
+}
