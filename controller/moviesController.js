@@ -1,12 +1,46 @@
-const index = (req,res) => {
-    res.json({
-        data: "movies index",
+import connection from "../db.js";
+
+const index = (req, res) => {
+    const sql = `
+        SELECT *
+        FROM movies
+    `;
+
+    connection.query(sql, (err, results) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json({
+                data: results,
+            });
+        }
     });
 };
 
 const show = (req, res) => {
-    res.json({
-        data: "movie show",
+    const id = req.params.id;
+
+    const movieSql = `
+        SELECT *
+        FROM movies
+        WHERE id = ?;
+    `;
+
+    connection.query(movieSql, [id], (err, results) => {
+        if (err) {
+            console.log(err);
+        }
+        if (results.length === 0) {
+            res.status(404).json({
+                error: "movie not found",
+            });
+        } else {
+            res.json({
+                data: {
+                    ...results[0],
+                },
+            });
+        }
     });
 };
 
