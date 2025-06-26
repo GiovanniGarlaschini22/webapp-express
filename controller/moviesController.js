@@ -26,6 +26,13 @@ const show = (req, res) => {
         WHERE id = ?;
     `;
 
+    const reviewSql = `
+        SELECT *
+        FROM reviews
+        WHERE reviews.movie_id = ?;
+    `;
+
+
     connection.query(movieSql, [id], (err, results) => {
         if (err) {
             console.log(err);
