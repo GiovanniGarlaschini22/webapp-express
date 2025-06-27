@@ -33,19 +33,23 @@ const show = (req, res) => {
     `;
 
 
-    connection.query(movieSql, [id], (err, results) => {
+    connection.query(movie, [id], (err, movieResults) => {
         if (err) {
             console.log(err);
         }
-        if (results.length === 0) {
+        
+        if (movieResults.length === 0) {
             res.status(404).json({
-                error: "movie not found",
+                error: "movie not found!",
             });
         } else {
-            res.json({
-                data: {
-                    ...results[0],
-                },
+            connection.query(reviewSql, [id], (err, reviewResults) => {
+                res.json({
+                    data: {
+                        ...movieResults[0],
+                        reviews: reviewResults,
+                    },
+                });
             });
         }
     });
