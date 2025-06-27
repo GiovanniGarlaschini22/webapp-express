@@ -1,6 +1,8 @@
 import express from "express";
 import moviesRouter from "./routers/movies.js";
 import notFound from "./middleware/notFound.js";
+import errorHandler from "./middleware/errorHandler.js";
+import imagePath from "./middleware/imagePath.js";
 
 const app = express();
 const port = process.env.SERVER_PORT;
@@ -14,7 +16,7 @@ app.get("/", (req, res) => {
     });
 });
 
-app.use("/movies", moviesRouter);
+app.use("/movies", imagePath, moviesRouter);
 
 app.use(notFound);
 app.use(errorHandler);

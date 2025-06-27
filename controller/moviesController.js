@@ -1,6 +1,8 @@
 import connection from "../db.js";
 
 const index = (req, res) => {
+    console.log(req.imagePath);
+
     const sql = `
         SELECT *
         FROM movies
@@ -10,6 +12,13 @@ const index = (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            const movies = results.map((curMovie) => {
+                return {
+                    ...curMovie,
+                    image: `${req.imagePath}/${curMovie.image}`,
+                };
+            });
+
             res.json({
                 data: results,
             });
@@ -37,7 +46,7 @@ const show = (req, res) => {
         if (err) {
             console.log(err);
         }
-        
+
         if (movieResults.length === 0) {
             res.status(404).json({
                 error: "movie not found!",
